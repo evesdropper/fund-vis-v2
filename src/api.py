@@ -36,5 +36,3 @@ def write_to_csv():
         fund = fund.replace(",", "")
         time = time.strftime('%Y-%m-%d %H:%M')
         f.write(f"{time},{fund}\n")
-
-write_to_csv()

@@ -1,9 +1,9 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 
 
 # Globally accessible libraries
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 
 def init_app():
@@ -11,7 +11,7 @@ def init_app():
     app = Flask(__name__)  # add config later
 
     # Initialize Plugins
-    db.init_app(app)
+    # db.init_app(app)
 
     with app.app_context():
         # Include our Routes

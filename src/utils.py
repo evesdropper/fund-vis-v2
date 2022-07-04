@@ -9,6 +9,9 @@ def find_file(file):
     return res[0]
 
 def get_day():
+    """
+    x-axis boundary moment
+    """
     today = datetime.datetime.utcnow().date()
     end_x = (today + datetime.timedelta(days=1))
     return end_x

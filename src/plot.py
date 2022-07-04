@@ -2,17 +2,21 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+from dash import Dash, html, dcc
 
 import api
 import utils 
+
+app = Dash(__name__)
 
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
 ymax = df["Fund"].max()
 checks = list(api.CHECKPOINTS.keys())
 
 # plotting
-fig = go.Figure()
-fig.add_trace(go.Scatter(x=df["Time"], y=df["Fund"], mode="lines+markers", name="Fund Entries"))
+trace = go.Scatter(x=df["Time"], y=df["Fund"], mode="lines+markers", name="Fund Entries")
+
+fig = go.Figure([trace])
 
 # Checklines
 for check in checks:
@@ -32,4 +36,21 @@ fig.update_layout(
     legend_title="Legend",
     showlegend = True,
 )
-fig.show()
+# fig.show()
+
+app.layout = html.Div(children=[
+    html.H1(children='Tanki Fund Tracker v2'),
+
+    html.Div(children='''
+        A graph to track the Tanki Fund over time. Made with Plotly (Dash).
+    '''),
+
+    dcc.Graph(
+        id='Tonk Fund',
+        figure=fig,
+        style = {'display': 'inline-block', 'width': '80%'}
+    )
+])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
