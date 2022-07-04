@@ -15,6 +15,6 @@ def init_app():
 
     with app.app_context():
         # Include our Routes
-        # from . import routes
+        from . import routes
 
         return app
