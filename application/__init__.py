@@ -8,7 +8,7 @@ from flask import Flask
 
 def init_app():
     """Initialize the core application."""
-    app = Flask(__name__)  # add config later
+    app = Flask(__name__, static_url_path='/static')
 
     # Initialize Plugins
     # db.init_app(app)

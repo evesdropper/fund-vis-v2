@@ -39,12 +39,6 @@ fig.update_layout(
 # fig.show()
 
 app.layout = html.Div(children=[
-    html.H1(children='Tanki Fund Tracker v2'),
-
-    html.Div(children='''
-        A graph to track the Tanki Fund over time. Made with Plotly (Dash).
-    '''),
-
     dcc.Graph(
         id='Tonk Fund',
         figure=fig,
