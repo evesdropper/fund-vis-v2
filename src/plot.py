@@ -11,7 +11,6 @@ ymax = df["Fund"].max()
 checks = list(api.CHECKPOINTS.keys())
 
 # plotting
-
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=df["Time"], y=df["Fund"], mode="lines+markers", name="Fund Entries"))
 
@@ -23,6 +22,7 @@ for check in checks:
     else: 
         fig.add_hline(y=checkm, line_color="red", annotation_text=f"Upcoming: {api.CHECKPOINTS[check]}")
 
+# general
 fig.update_xaxes(range=[api.START_DATE, utils.get_day()])
 fig.update_yaxes(range=[0, 1.2 * ymax])
 fig.update_layout(
@@ -30,5 +30,6 @@ fig.update_layout(
     xaxis_title="Time (UTC)",
     yaxis_title="Amount in Tanki Fund",
     legend_title="Legend",
+    showlegend = True,
 )
 fig.show()
