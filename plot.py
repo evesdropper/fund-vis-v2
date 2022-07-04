@@ -9,6 +9,7 @@ import api
 import utils
 
 app = Dash(__name__)
+server = app.server
 
 # data 
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
