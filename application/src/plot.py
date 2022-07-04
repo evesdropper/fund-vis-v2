@@ -10,7 +10,7 @@ from . import utils
 
 def init_dashboard(server):
     """Create a Plotly Dash dashboard."""
-    dash_app = dash.Dash(server=server, routes_pathname_prefix="/track")
+    dash_app = dash.Dash(server=server, routes_pathname_prefix="/track/")
 
     # data 
     df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)

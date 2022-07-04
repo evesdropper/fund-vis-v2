@@ -17,4 +17,7 @@ def init_app():
         # Include our Routes
         from . import routes
 
+        from .src.plot import init_dashboard
+        app = init_dashboard(app)
+
         return app
