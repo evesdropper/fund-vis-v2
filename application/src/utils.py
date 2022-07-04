@@ -1,6 +1,9 @@
 import os, sys, glob
 import datetime 
 
+path = os.path.join(os.path.dirname(__file__), os.pardir)
+sys.path.append(path)
+
 def find_file(file):
     """
     Find correct save file

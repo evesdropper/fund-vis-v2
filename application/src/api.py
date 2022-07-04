@@ -1,10 +1,17 @@
 # necessary imports
-import os
+import os, sys, glob
 import datetime
 import requests
 from bs4 import BeautifulSoup
+path = os.path.join(os.path.dirname(__file__), os.pardir)
+sys.path.append(path)
 
-from utils import *
+def find_file(file):
+    """
+    Find correct save file
+    """
+    res = glob.glob(f"**/{file}", recursive=True)
+    return res[0]
 
 CWD = os.getcwd()
 SF_NAME = "temp.csv" # change when needed 
