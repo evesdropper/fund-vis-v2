@@ -6,16 +6,20 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import matplotlib.dates as mdates
+import dash
+from dash import Dash, html, dcc
 
 import api
 import utils
 
+dash.register_page(__name__)
+
 CWD = os.getcwd()
-print(type(CWD))
+# print(type(CWD))
 cwd_path = Path(CWD)
 PARENT = str(cwd_path.parent.absolute()) # docs/tonk
 NEXT_DIR = os.path.join(PARENT, "tanki-fund")
-print(NEXT_DIR)
+# print(NEXT_DIR)
 
 # data
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
@@ -56,8 +60,8 @@ def predict(x=False, y=False):
     if x:
         return np.round(m * mdates.date2num(api.START_DATE + datetime.timedelta(days=35)) + b, -3)
 
-print(predict(x=True))
-print(api.scrape)
+# print(predict(x=True))
+# print(api.scrape)
 
 # format
 def generate_overview():
@@ -84,3 +88,20 @@ def generate_overview():
     </div>
 </div>
 """
+
+# Dash Layout (Results)
+layout = html.Div(children=[
+    dcc.Markdown('''
+
+    ## Analytics
+
+    As of right now, analytics are not yet available. Stay tuned for the coming features!
+    * At-a-glance analytics (e.g. final fund value, next checkpoint).
+    * Prediction models and explanations.
+    * Chart for daily changes.
+
+    And much more (if time allows). All of this is made to help you make a more informed decision on whether or not to buy in the Tanki Fund. Thanks for sticking around!
+    ''')
+
+
+])
