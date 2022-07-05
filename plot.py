@@ -43,12 +43,13 @@ fig.update_layout(
 )
 # fig.show()
 
-app.layout = html.Div(children=[
+app.layout = html.Div(children=[html.Center(children=[
     dcc.Graph(
         id='Tonk Fund',
         figure=fig,
         style = {'display': 'inline-block', 'width': '1080px', 'height': '540px', 'padding': 'auto'}
     )
+    ])
 ])
 
 if __name__ == '__main__':
