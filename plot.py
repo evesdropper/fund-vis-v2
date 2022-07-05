@@ -44,7 +44,7 @@ app.layout = html.Div(children=[
     dcc.Graph(
         id='Tonk Fund',
         figure=fig,
-        style = {'display': 'inline-block', 'width': '100%', 'height': '100%'}
+        style = {'display': 'inline-block', 'width': '1080px', 'height': '540px', 'padding': 'auto'}
     )
 ])
 
