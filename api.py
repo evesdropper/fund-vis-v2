@@ -19,7 +19,7 @@ SF_ROUTE = find_file(SF_NAME)
 SAVEFILE = os.path.join(CWD, SF_ROUTE)
 
 URL = "https://tankionline.com/pages/summer-major/?lang=en" # change when needed
-START_DATE = datetime.datetime.strptime("2022-07-04 4:00", "%Y-%m-%d %H:%M")
+START_DATE = datetime.datetime.strptime("2022-07-04 2:00", "%Y-%m-%d %H:%M")
 CHECKPOINTS = {1: "Nuclear Energy", 4: "Prot Slot", 7: "Skin Container", 8: "Magnetic Pellets", 9: "Helios", 10: "Hammer LGC", 11: "Vacuum Shell", 12: "Swarm", 13: "Pulsar", 14: "Armadillo", 15: "Crisis"}
 
 # stealing my old code
