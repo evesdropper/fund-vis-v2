@@ -2,14 +2,13 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-# import dash
+import dash
 from dash import Dash, html, dcc
 
 import api
 import utils
 
-app = Dash(__name__)
-server = app.server
+dash.register_page(__name__, path='/')
 
 # data 
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
@@ -43,14 +42,14 @@ fig.update_layout(
 )
 # fig.show()
 
-app.layout = html.Div(children=[html.Center(children=[
+layout = html.Div(children=[
+
+    html.Center(children=[
     dcc.Graph(
         id='Tonk Fund',
         figure=fig,
         style = {'display': 'inline-block', 'width': '1080px', 'height': '540px', 'padding': 'auto'}
     )
-    ])
-])
+    ]),
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+])
