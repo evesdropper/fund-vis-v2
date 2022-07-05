@@ -13,11 +13,14 @@ server = app.server
 
 # data 
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
+
+unique_funds = df.sort("Time").drop_duplicates(subset=["Fund"])
 ymax = df["Fund"].max()
 checks = list(api.CHECKPOINTS.keys())
 
+
 # plotting
-trace = go.Scatter(x=df["Time"], y=df["Fund"], mode="lines+markers", name="Fund Entries")
+trace = go.Scatter(x=unique_funds["Time"], y=unique_funds["Fund"], mode="lines+markers", name="Fund Entries")
 fig = go.Figure([trace])
 
 # Checklines
