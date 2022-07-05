@@ -5,7 +5,7 @@ import plotly.express as px
 import dash
 from dash import Dash, html, dcc
 
-import api
+import api as api
 import utils
 
 app = Dash(__name__, use_pages=True)

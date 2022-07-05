@@ -5,7 +5,7 @@ import plotly.express as px
 import dash
 from dash import Dash, html, dcc
 
-import api
+import api as api
 import utils
 
 dash.register_page(__name__, path='/')

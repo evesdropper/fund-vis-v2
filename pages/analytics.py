@@ -9,7 +9,7 @@ import matplotlib.dates as mdates
 import dash
 from dash import Dash, html, dcc
 
-import api
+import api as api
 import utils
 
 dash.register_page(__name__)
@@ -23,8 +23,14 @@ NEXT_DIR = os.path.join(PARENT, "tanki-fund")
 
 # data
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
+hourly = df["Time"].str.extract(rf'(:00)').dropna()
+cur_time, cur_fund = api.scrape()
 
-print(api.START_DATE, api.START_DATE + datetime.timedelta(days=1))
+# diffing
+df_h = df.iloc[hourly.index]
+diff_series = df_h["Fund"].diff(periods=24)
+df_h["Diff"] = diff_series
+dfh_upd = df_h.dropna()
 
 # Daily Updates
 def get_daily(last=False):
@@ -48,7 +54,6 @@ def regression(log=None):
     """
     Regression
     """
-    
     x, y = mdates.datestr2num(df["Time"].to_numpy()), df["Fund"].to_numpy()
     r = np.corrcoef(x, y)[0, 1]
     m = r * (np.std(y) / np.std(x))
@@ -58,10 +63,8 @@ def regression(log=None):
 def predict(x=False, y=False):
     m, b = regression()
     if x:
-        return np.round(m * mdates.date2num(api.START_DATE + datetime.timedelta(days=35)) + b, -3)
+        return np.round(m * mdates.date2num(api.START_DATE + datetime.timedelta(days=35)) + b, -3) / 10 ** 6
 
-# print(predict(x=True))
-# print(api.scrape)
 
 # format
 def generate_overview():
@@ -91,16 +94,32 @@ def generate_overview():
 
 # Dash Layout (Results)
 layout = html.Div(children=[
-    dcc.Markdown('''
+    dcc.Markdown(f'''
 
     ## Analytics
 
-    As of right now, analytics are not yet available. Stay tuned for the coming features!
+    As of right now, analytics are under development. Stay tuned for the coming features!
     * At-a-glance analytics (e.g. final fund value, next checkpoint).
     * Prediction models and explanations.
     * Chart for daily changes.
 
     And much more (if time allows). All of this is made to help you make a more informed decision on whether or not to buy in the Tanki Fund. Thanks for sticking around!
+
+    ## At a Glance
+    Last Updated: {cur_time.strftime("%Y-%m-%d %H:%M")}
+
+    ### Current Fund
+    {int(cur_fund.replace(",", "")) / 10 ** 6}M Tankoins
+
+    ### Increase in past 24H*
+    {int(dfh_upd.iloc[-1, 2]) / 10 ** 3}K Tankoins
+
+    ### Final Fund Prediction**
+    {predict(x=True)}M Tankoins
+
+    #### Notes:
+    * Increase in past 24H is calculated using the hourly plots. Daily increase table coming soon.
+    * Final predictions may not be accurate as the fund has just started.
     ''')
 
 
