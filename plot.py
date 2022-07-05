@@ -14,7 +14,7 @@ server = app.server
 # data 
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)
 
-unique_funds = df.sort("Time").drop_duplicates(subset=["Fund"])
+unique_funds = df.sort_values("Time").drop_duplicates(subset=["Fund"])
 ymax = df["Fund"].max()
 checks = list(api.CHECKPOINTS.keys())
 
