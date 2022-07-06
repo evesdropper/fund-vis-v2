@@ -21,7 +21,7 @@ hourly = df["Time"].str.extract(rf'(:0[012])').dropna()
 df_h = df.iloc[hourly.index]
 diff_series = df_h["Fund"].diff()
 df_h["Diff"] = diff_series
-dfh_graph = df_h.dropna().drop(22)
+dfh_graph = df_h.dropna()
 
 
 trace = go.Scatter(x=dfh_graph["Time"], y=dfh_graph["Diff"], mode="lines+markers", name="Change in Past Hour")
