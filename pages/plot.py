@@ -30,6 +30,9 @@ for check in checks:
     else: 
         fig.add_hline(y=checkm, line_color="red", annotation_text=f"Upcoming: {api.CHECKPOINTS[check]}")
 
+# Notes
+fig.add_vrect(x0="2022-07-04 02:00", x1="2022-07-04 17:33", fillcolor="red", annotation_text="Sourced from Observations", opacity=0.2, line_width=0)
+
 # general
 fig.update_xaxes(range=[api.START_DATE, utils.get_day()])
 fig.update_yaxes(range=[0, 1.2 * ymax])

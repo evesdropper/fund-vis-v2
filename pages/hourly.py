@@ -28,7 +28,7 @@ trace = go.Scatter(x=dfh_graph["Time"], y=dfh_graph["Diff"], mode="lines+markers
 fig = go.Figure([trace])
 
 # avg
-fig.add_hline(y=avg_change, line_color="gray", annotation_text=f"Avg Hourly Change: {np.round(avg_change, -3) / 10 ** 3}k")
+fig.add_hline(y=avg_change, line_color="gray", annotation_text=f"Avg Hourly Change: {np.round(avg_change, -2) / 10 ** 3}k")
 
 fig.update_xaxes(range=[api.START_DATE, utils.get_day()])
 fig.update_yaxes(range=[0, dfh_graph["Diff"].max() * 1.2])
