@@ -1,7 +1,7 @@
 cd /mnt/c/Users/Evelyn/Documents/tonk/fund-vis-v2
-# cd src
+cd fund
 python3 fund.py cron
-# cd ..
+cd .. 
 message=$(date '+%Y-%m-%d %H:%M:%S')
 git add saved/temp.csv
 git commit -m "add entry at ${message}"
