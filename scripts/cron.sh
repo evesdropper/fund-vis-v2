@@ -10,7 +10,7 @@ git commit -m "add entry at ${message}"
 git checkout flask-dev
 python3 fund.py cron
 git add saved/temp.csv
-echo "cron commit at ${message} - dev branch" >> scripts/cronlog.txt
+echo "(flask dev) cron commit at ${message}" >> scripts/cronlog.txt
 git add scripts/cronlog.txt
 git commit -m "add entry at ${message} - dev branch"
 git checkout main
