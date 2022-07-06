@@ -46,6 +46,8 @@ fig.update_layout(
 
 app.layout = html.Div([
 	html.H1('Tanki Fund Tracker'),
+    html.H2('2022 - Summer Major'),
+    html.P(f'Site Status: {api.scrape(checkstatus=True)}'),
 
     html.Div(
         [
@@ -58,6 +60,7 @@ app.layout = html.Div([
         ]
     ),
 	dash.page_container,
+    html.Center("Made by Person_Random."),
 ])
 
 if __name__ == '__main__':

@@ -35,7 +35,7 @@ def scrape(checkstatus=False):
     except:
         fund_text = pd.read_csv(SAVEFILE).iloc[-1, 1]
         if checkstatus:
-            return "Site is down; using backups."
+            return "Being DDoS'ed again"
     return datetime.datetime.utcnow(), fund_text
 
 # temp strat for plotly
