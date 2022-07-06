@@ -22,10 +22,13 @@ df_h = df.iloc[hourly.index]
 diff_series = df_h["Fund"].diff()
 df_h["Diff"] = diff_series
 dfh_graph = df_h.dropna()
-
+avg_change = dfh_graph["Diff"].mean()
 
 trace = go.Scatter(x=dfh_graph["Time"], y=dfh_graph["Diff"], mode="lines+markers", name="Change in Past Hour")
 fig = go.Figure([trace])
+
+# avg
+fig.add_hline(y=avg_change, line_color="gray", annotation_text=f"Avg Hourly Change: {np.round(avg_change, -3) / 10 ** 3}k")
 
 fig.update_xaxes(range=[api.START_DATE, utils.get_day()])
 fig.update_yaxes(range=[0, dfh_graph["Diff"].max() * 1.2])
