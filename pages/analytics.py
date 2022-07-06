@@ -9,20 +9,13 @@ import matplotlib.dates as mdates
 import dash
 from dash import Dash, html, dcc
 
-import api as api
-import utils
+sys.path.append('../')
+from fund import api, utils
 
 path = os.path.join(os.path.dirname(__file__), os.pardir)
 sys.path.append(path)
 
 dash.register_page(__name__)
-
-CWD = os.getcwd()
-# print(type(CWD))
-cwd_path = Path(CWD)
-PARENT = str(cwd_path.parent.absolute()) # docs/tonk
-NEXT_DIR = os.path.join(PARENT, "tanki-fund")
-# print(NEXT_DIR)
 
 # data
 df = pd.read_csv(api.SAVEFILE, names=["Time", "Fund"], header=None)

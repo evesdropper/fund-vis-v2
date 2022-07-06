@@ -1,7 +1,7 @@
 import os, sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-import api as api
+import api
 
 def cmd_input(args):
     command = args[0]

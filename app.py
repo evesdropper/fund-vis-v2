@@ -5,8 +5,7 @@ import plotly.express as px
 import dash
 from dash import Dash, html, dcc
 
-import api as api
-import utils
+from fund import api, utils
 
 app = Dash(__name__, use_pages=True)
 app.title = 'Tanki Fund Tracker' 

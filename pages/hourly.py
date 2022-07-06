@@ -6,8 +6,8 @@ import plotly.express as px
 import dash
 from dash import Dash, html, dcc
 
-import api as api
-import utils
+sys.path.append('../')
+from fund import api, utils
 
 path = os.path.join(os.path.dirname(__file__), os.pardir)
 sys.path.append(path)

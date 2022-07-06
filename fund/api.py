@@ -1,5 +1,6 @@
 # necessary imports
 import os, sys, glob
+from pathlib import Path
 import datetime
 import requests
 from bs4 import BeautifulSoup
@@ -7,17 +8,9 @@ import pandas as pd
 path = os.path.join(os.path.dirname(__file__), os.pardir)
 sys.path.append(path)
 
-def find_file(file):
-    """
-    Find correct save file
-    """
-    res = glob.glob(f"**/{file}", recursive=True)
-    return res[0]
-
-CWD = os.getcwd()
 SF_NAME = "temp.csv" # change when needed 
-SF_ROUTE = find_file(SF_NAME)
-SAVEFILE = os.path.join(CWD, SF_ROUTE)
+SAVEFILE = rf"C:\Users\Evelyn\Documents\tonk\fund-vis-v2\saved\{SF_NAME}"
+# print(SAVEFILE)
 
 URL = "https://tankionline.com/pages/summer-major/?lang=en" # change when needed
 START_DATE = datetime.datetime.strptime("2022-07-04 2:00", "%Y-%m-%d %H:%M")
