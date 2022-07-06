@@ -8,8 +8,25 @@ import pandas as pd
 path = os.path.join(os.path.dirname(__file__), os.pardir)
 sys.path.append(path)
 
+def find_file(dir):
+    """
+    Find correct save file
+    """
+    ret = ''
+    for root, dirs, files in os.walk(dir):
+        for names in files:
+            if names.endswith('.csv'):
+                # print(os.path.join(root, names))
+                ret = os.path.join(root, names)
+    return ret
+
+CWD = os.getcwd()
+# print(type(CWD))
 SF_NAME = "temp.csv" # change when needed 
-SAVEFILE = rf"C:\Users\Evelyn\Documents\tonk\fund-vis-v2\saved\{SF_NAME}"
+cwd_path = Path(CWD)
+PARENT = str(cwd_path.parent.absolute()) # docs/tonk
+# print(PARENT)
+SAVEFILE = find_file(PARENT)
 # print(SAVEFILE)
 
 URL = "https://tankionline.com/pages/summer-major/?lang=en" # change when needed
