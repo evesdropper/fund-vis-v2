@@ -1,3 +1,4 @@
+import os, sys
 import numpy as np 
 import pandas as pd
 import plotly.graph_objects as go
@@ -7,6 +8,9 @@ from dash import Dash, html, dcc
 
 import api as api
 import utils
+
+path = os.path.join(os.path.dirname(__file__), os.pardir)
+sys.path.append(path)
 
 dash.register_page(__name__)
 

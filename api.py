@@ -3,6 +3,7 @@ import os, sys, glob
 import datetime
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 path = os.path.join(os.path.dirname(__file__), os.pardir)
 sys.path.append(path)
 
@@ -32,6 +33,7 @@ def scrape(checkstatus=False):
         if checkstatus:
             return "Up to date"
     except:
+        fund_text = pd.read_csv(SAVEFILE).iloc[-1, 1]
         if checkstatus:
             return "Site is down; using backups."
     return datetime.datetime.utcnow(), fund_text

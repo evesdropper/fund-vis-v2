@@ -12,6 +12,9 @@ from dash import Dash, html, dcc
 import api as api
 import utils
 
+path = os.path.join(os.path.dirname(__file__), os.pardir)
+sys.path.append(path)
+
 dash.register_page(__name__)
 
 CWD = os.getcwd()
