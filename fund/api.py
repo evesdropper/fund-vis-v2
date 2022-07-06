@@ -12,14 +12,17 @@ def find_file(dir):
     """
     Find correct save file
     """
+    include = ["fund-vis-v2", "saved"]
     ret = ''
     for root, dirs, files in os.walk(dir):
+        dirs[:] = [d for d in dirs if d in include]
         for names in files:
             if names.endswith('.csv'):
                 # print(os.path.join(root, names))
                 ret = os.path.join(root, names)
     return ret
 
+# print(sys.platform)
 CWD = os.getcwd()
 # print(type(CWD))
 SF_NAME = "temp.csv" # change when needed 
